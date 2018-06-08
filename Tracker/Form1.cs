@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Tracker
@@ -10,12 +11,18 @@ namespace Tracker
 
         // Task Management variables
         string[] task = new string[4];
+        List<string[]> tasks = new List<string[]>();
 
         public Form1()
         {
             InitializeComponent();
 
             btnStop.Enabled = false;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            txtTaskName.Focus();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -43,6 +50,8 @@ namespace Tracker
                 }
                 else
                 {
+                    lsvHistoric.Items.Clear();
+
                     running = true;
                     btnStart.Text = "New Task";
 
@@ -88,8 +97,22 @@ namespace Tracker
             btnStart.Text = "Start";
             btnStop.Enabled = false;
             running = false;
-        }
 
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Run_" + DateTime.Now.ToString("dd/MM/yyyy").Replace("/", "_") + "_" + Guid.NewGuid() + ".txt";
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(path))
+            {
+                file.WriteLine("Task Block from - " + DateTime.Now.ToString());
+                file.WriteLine("-----------------------------------------------------------------------");
+                file.WriteLine("-----------------------------------------------------------------------");
+                file.WriteLine("Task name - Start time - End time - Spent time");
+                file.WriteLine("-----------------------------------------------------------------------");
+                foreach (var t in tasks)
+                {
+                    file.WriteLine(t[0] + " - " + t[1] + " - " + t[2] + " - " + t[3]);
+                }
+            }
+        }
 
         private void SaveTask()
         {
@@ -104,13 +127,15 @@ namespace Tracker
             // Save current task in the List View
             var listViewItem = new ListViewItem(task);
             lsvHistoric.Items.Add(listViewItem);
+
+            tasks.Add(new string[] { task[0], task[1], task[2], task[3] });
         }
 
         private void UpdateTimerLabels()
         {
-            lblSeconds.Text = seconds.ToString().PadLeft(2);
-            lblMinutes.Text = minutes.ToString().PadLeft(2);
-            lblHours.Text = hours.ToString().PadLeft(2);
+            lblSeconds.Text = seconds.ToString().PadLeft(2, '0');
+            lblMinutes.Text = minutes.ToString().PadLeft(2, '0');
+            lblHours.Text = hours.ToString().PadLeft(2, '0');
         }
 
         private void Reset()

@@ -32,6 +32,10 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.lsvHistoric = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblHours = new System.Windows.Forms.Label();
             this.lblMinutes = new System.Windows.Forms.Label();
             this.lblSeconds = new System.Windows.Forms.Label();
@@ -43,10 +47,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtTaskName = new System.Windows.Forms.TextBox();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label7 = new System.Windows.Forms.Label();
             this.lblCurrentTask = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -54,6 +54,7 @@
             // btnStart
             // 
             this.btnStart.BackColor = System.Drawing.Color.Lime;
+            this.btnStart.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Location = new System.Drawing.Point(560, 9);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(228, 75);
@@ -65,6 +66,7 @@
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.Red;
+            this.btnStop.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.Location = new System.Drawing.Point(560, 93);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(228, 75);
@@ -88,6 +90,26 @@
             this.lsvHistoric.TabIndex = 2;
             this.lsvHistoric.UseCompatibleStateImageBehavior = false;
             this.lsvHistoric.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Task Name";
+            this.columnHeader1.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Start";
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Stop";
+            this.columnHeader3.Width = 120;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Spent Time";
+            this.columnHeader4.Width = 120;
             // 
             // lblHours
             // 
@@ -187,26 +209,6 @@
             this.txtTaskName.Size = new System.Drawing.Size(490, 20);
             this.txtTaskName.TabIndex = 12;
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Task Name";
-            this.columnHeader1.Width = 200;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Start";
-            this.columnHeader2.Width = 120;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Stop";
-            this.columnHeader3.Width = 120;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Spent Time";
-            this.columnHeader4.Width = 120;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -246,8 +248,13 @@
             this.Controls.Add(this.lsvHistoric);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(816, 464);
+            this.MinimumSize = new System.Drawing.Size(816, 464);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tasker";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
